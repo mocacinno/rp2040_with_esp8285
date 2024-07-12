@@ -33,3 +33,9 @@ We need to install Serial_port_transmission.uf2 (available on this repo) on rp20
 ## step 3: upload main.py
 
 connect your pico, start thonny, select the board in the bottom right corner, copy my main.py file and edit the SSID and password... Then run (and check ntfy.sh if a message was posted in the channel you picked)
+
+## debugging
+
+If something goes wrong, you can always re-flash the rp2040 with Serial_port_transmission.uf2 and open putty. Select a serial connection, edit the COM port, change the speed to 115200 and connect. Now you can give AT command directly to the esp8285. Putty does not send \r\n by default, so you need to enter an AT command, press enter, then press CTRL-J.  
+If you want to learn more about AT commands, you can visit [this](https://docs.espressif.com/projects/esp-at/en/release-v2.2.0.0_esp8266/AT_Command_Set/index.html) page.  
+IF you cannot get it to work, you can always open an issue, but i'm not affiliated with espressif, tzt, raspberry,... so i'm not sure if i can help you out... Doesn't hurt to ask tough!
