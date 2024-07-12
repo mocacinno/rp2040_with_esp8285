@@ -6,4 +6,30 @@ This means that the "default" raspberry pi pico w firmware (installed manually, 
 
 i found some guys on [the raspberry pi forum](https://forums.raspberrypi.com/viewtopic.php?t=361532) that discussed (and solved) the problem. But still, their walktrough wasn't dummy-proof, so i decided to write down all my steps, and a demo program posting some data to ntfy.sh!!!
 
-Step 1:
+## step 1: flash esp8285 firmware
+
+As a very first step, we'll need to get some firmware onto our esp8285 chip
+
+### upload firmware to rp2040
+
+We need to install Serial_port_transmission.uf2 (available on this repo) on rp2040. To do this, press the bootsel button closest to the usb connector and hold the button down whilst plugging in your raspberry pi. When plugged in, your OS should detect your raspberry as a removable device. Copy Serial_port_transmission.uf2 onto this removable device and wait for the file to be uploaded and the rPi to be rebooted.  
+
+### upload firmware to esp8285
+
+* Download the [flash download tool](https://www.espressif.com/en/support/download/other-tools) from espressif
+* unplug your python, hold the "other" button down (the one furthest from the usb port) and connect your pico to your pc
+* Start the flash download tool
+* in the first menu, choose "chip type" esp8285
+* choose file WIFI-ESP8285_upgrade.bin (available on this repo) @ 0x0
+* leave all the rest (SPI speed 40 MHz, SPI mode DOUT, DoNotChgBin selected)
+* make sure your COM port is correct (you can use your device manager, or thonny to find out which com port to use)
+* press "Start" and wait untill finished
+
+## step 2: flash rp2040 with micropython
+
+* unplug your pico, hold bootsel button down, plug python in
+* either use thonny to install micropython, or download and copy to your pico
+
+## step 3: upload main.py
+
+connect your pico, start thonny, select the board in the bottom right corner, copy my main.py file and edit the SSID and password... Then run (and check ntfy.sh if a message was posted in the channel you picked)
